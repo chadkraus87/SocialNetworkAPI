@@ -1,27 +1,36 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-
-dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 // Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+// Connect to MongoDB database
+mongoose.connect('mongodb://localhost/social_network_db', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
+  useFindAndModify: false,
 });
 
-// Load routes
-app.use('/api', require('./routes/userRoutes'));
-app.use('/api', require('./routes/thoughtRoutes'));
-app.use('/api', require('./routes/reactionRoutes'));
+// Import routes
+const userRoutes = require('./routes/userRoutes');
+const thoughtRoutes = require('./routes/thoughtRoutes');
 
+// Use routes
+app.use('/api/users', userRoutes);
+app.use('/api/thoughts', thoughtRoutes);
+
+// Default error handler
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: 'Server error' });
+});
+
+// Start the server
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Server is running on http://localhost:${PORT}`);
 });
