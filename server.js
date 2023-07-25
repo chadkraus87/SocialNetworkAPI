@@ -12,8 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect('mongodb://localhost/social_network_db', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
 });
 
 // Import routes
