@@ -40,14 +40,11 @@ const updateUser = async (req, res) => {
 
 const deleteUser = async (req, res) => {
   try {
-    const user = await User.findByIdAndDelete(req.params.userId);
-    if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+    const deletedUser = await User.findByIdAndDelete(req.params.userId);
+    if (!deletedUser) {
+      return res.status(404).json({ error: 'User not found' });
     }
-    // Remove the user's associated thoughts
-    await Thought.deleteMany({ username: user.username });
-
-    res.json({ message: 'User and associated thoughts deleted successfully' });
+    res.json({ message: 'User deleted successfully' });
   } catch (error) {
     console.error('Error deleting user:', error);
     res.status(500).json({ error: 'Failed to delete user' });
