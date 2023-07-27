@@ -9,7 +9,7 @@ This is a backend API for a social network platform that allows users to share t
 
 [GitHub Repository](https://github.com/chadkraus87/SocialNetworkAPI)
 
-![Front End Landing Page](/public/images/snapiroutes.png)
+![Insomnia Routes](/public/assets/snapiroutes.png)
 
 ## Table of Contents
 - [Installation](#installation)
