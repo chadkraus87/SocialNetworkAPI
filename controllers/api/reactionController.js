@@ -1,4 +1,5 @@
 const Thought = require('../../models/Thought');
+const Reaction = require('../../models/Reaction');
 
 const createReaction = async (req, res) => {
   try {
@@ -6,10 +7,13 @@ const createReaction = async (req, res) => {
     if (!thought) {
       return res.status(404).json({ message: 'Thought not found' });
     }
+
     const { reactionBody, username } = req.body;
-    thought.reactions.push({ reactionBody, username });
+    const reaction = await Reaction.create({ reactionBody, username });
+    thought.reactions.push(reaction);
     await thought.save();
-    res.status(201).json(thought);
+
+    res.status(201).json(reaction);
   } catch (error) {
     console.error('Error creating reaction:', error);
     res.status(500).json({ error: 'Failed to create reaction' });
@@ -22,9 +26,11 @@ const deleteReaction = async (req, res) => {
     if (!thought) {
       return res.status(404).json({ message: 'Thought not found' });
     }
+
     thought.reactions = thought.reactions.filter(
-      (reaction) => reaction.reactionId.toString() !== req.params.reactionId
+      (reaction) => reaction._id.toString() !== req.params.reactionId
     );
+
     await thought.save();
     res.json({ message: 'Reaction deleted successfully' });
   } catch (error) {
