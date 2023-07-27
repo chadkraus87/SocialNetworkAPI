@@ -11,6 +11,8 @@ This is a backend API for a social network platform that allows users to share t
 
 ![Insomnia Routes](/public/assets/snapiroutes.png)
 
+https://github.com/chadkraus87/SocialNetworkAPI/assets/127354484/ba8727af-7757-4efc-9cb5-2f843ec6226c
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
