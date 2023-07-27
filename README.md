@@ -7,6 +7,10 @@ A NoSQL Social Network Application
 
 This is a backend API for a social network platform that allows users to share their thoughts, reactions, and connect with other users. The application follows the Model-View-Controller (MVC) architecture and uses Node.js, Express.js, MongoDB, and Mongoose for data management.
 
+[GitHub Repository](https://github.com/chadkraus87/SocialNetworkAPI)
+
+![Front End Landing Page](/public/images/snapiroutes.png)
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
